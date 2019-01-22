@@ -1,0 +1,24 @@
+Création BD 
+
+CREATE DATABASE `where_is_my_friend` /*!40100 DEFAULT CHARACTER SET latin1 */
+
+Création table messages :
+
+CREATE TABLE `messages` (
+ `idMessage` int(11) NOT NULL AUTO_INCREMENT,
+ `idUserEnvoyer` int(11) NOT NULL,
+ `idUserRecu` int(11) NOT NULL,
+ `Message` text NOT NULL,
+ `dateEnvoie` datetime NOT NULL,
+ PRIMARY KEY (`idMessage`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+Création table users :
+
+CREATE TABLE `users` (
+ `idUser` int(11) NOT NULL AUTO_INCREMENT,
+ `nom` varchar(50) NOT NULL,
+ `prenom` varchar(50) NOT NULL,
+ `adresse` varchar(255) NOT NULL,
+ PRIMARY KEY (`idUser`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
