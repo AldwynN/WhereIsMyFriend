@@ -1,4 +1,10 @@
 <?php
+/* Titre : Classe "Message"
+ * Date : Mardi, 22.01.2019
+ * Auteurs : Romain Peretti - Khalil Meddeb
+ * Version : 1.0
+ * Description : Création de la classe "Message" et initialisation des principaux champs
+ */
 
 /**
  * Cette classe contient les informations

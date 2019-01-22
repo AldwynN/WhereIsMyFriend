@@ -1,4 +1,10 @@
 <?php
+/* Titre : Classe "User"
+ * Date : Mardi, 22.01.2019
+ * Auteurs : Romain Peretti - Khalil Meddeb
+ * Version : 1.0
+ * Description : Création de la classe "User" et initialisation des principaux champs de cette classe
+ */
 
 /**
  * Cette classe contient les informations
