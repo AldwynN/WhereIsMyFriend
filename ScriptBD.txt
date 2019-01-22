@@ -6,19 +6,25 @@ Création table messages :
 
 CREATE TABLE `messages` (
  `idMessage` int(11) NOT NULL AUTO_INCREMENT,
- `idUserEnvoyer` int(11) NOT NULL,
- `idUserRecu` int(11) NOT NULL,
- `Message` text NOT NULL,
- `dateEnvoie` datetime NOT NULL,
- PRIMARY KEY (`idMessage`)
+ `idUserSent` int(11) NOT NULL,
+ `idUserReceived` int(11) NOT NULL,
+ `message` text NOT NULL,
+ `dateSent` datetime NOT NULL,
+ PRIMARY KEY (`idMessage`),
+ KEY `idUserSent` (`idUserSent`),
+ KEY `idUserReceived` (`idUserReceived`),
+ CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`idUserReceived`) REFERENCES `users` (`idUser`),
+ CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`idUserSent`) REFERENCES `users` (`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 Création table users :
 
 CREATE TABLE `users` (
  `idUser` int(11) NOT NULL AUTO_INCREMENT,
- `nom` varchar(50) NOT NULL,
- `prenom` varchar(50) NOT NULL,
- `adresse` varchar(255) NOT NULL,
+ `email` varchar(50) NOT NULL,
+ `password` varchar(40) NOT NULL,
+ `lastName` varchar(50) NOT NULL,
+ `firstName` varchar(50) NOT NULL,
+ `adress` varchar(255) NOT NULL,
  PRIMARY KEY (`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
