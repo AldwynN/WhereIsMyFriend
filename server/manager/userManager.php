@@ -12,9 +12,10 @@ require_once __DIR__ . '/../database/database.php';
 class UserManager {
 
     public static function AddUser($email, $password, $lastName, $firstName, $adress) {
-        $sqlInsertUser = "INSERT INTO `where_is_my_friend`.`users` (`email`, `password`, `lastName`, `firstName`, `adress`) "
-                . "VALUES (:email, :password, :lastName, :firstName, :adress);";
-
+        $sqlInsertUser = "INSERT INTO `where_is_my_friend`.`users` (`email`, `password`,`salt`, `lastName`, `firstName`, `adress`) "
+                . "VALUES (:email, :password,:salt, :lastName, :firstName, :adress);";
+        $salt = uniqid(mt_rand(), true);
+        $encryptPwd = sha1($password+$salt);
         try {
             $stmt = Database::prepare($sqlInsertUser);
             if (UserManager::UserExist($email)) {
@@ -23,7 +24,8 @@ class UserManager {
             else{
                 $stmt->execute(array(
                 "email" => $email,
-                "password" => $password,
+                "password" => $encryptPwd,
+                "salt" => $salt,
                 "lastName" => $lastName,
                 "firstName" => $firstName,
                 "adress" => $adress
