@@ -95,8 +95,9 @@ class UserManager {
 
     public static function GetUserInfos($idUser) {
         try {
-            $stmt = EDatabase::prepare('SELECT * FROM where_is_my_friend.users u WHERE u.idUser = :id');
+            $stmt = Database::prepare('SELECT * FROM where_is_my_friend.users u WHERE u.idUser = :id');
             $stmt->bindParam(":id", $idUser, PDO::PARAM_INT, 50);
+            $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'User');
             return $result;
         } catch (PDOException $e) {
