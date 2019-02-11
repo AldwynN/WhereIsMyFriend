@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '../server/manager/userManager.php';
-$user = UserManager::getUserInfos(7);
+if (isset($_GET['id'])) {
+        $user = UserManager::getUserInfos($_GET['id']);
+    } else {
+        $user = UserManager::getUserInfos(7);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
