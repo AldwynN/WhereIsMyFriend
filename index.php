@@ -10,7 +10,7 @@ if (isset($_POST["connection"])) {
         $adress = filter_var($_POST["adress"], FILTER_SANITIZE_STRING);
         if(UserManager::AddUser($email, $pwd, $firstName, $secondName, $adress))
         {
-            echo "<script>alert('Votre inscription c\'est bien déroulé')</script>";
+            echo "<script>alert('Votre inscription s\'est bien déroulé')</script>";
         }
         else{
             echo "<script>alert('Cet email existe déjà')</script>";
@@ -24,7 +24,7 @@ if (isset($_POST["connectionLog"])) {
         //JETAIS ENTRAIN DE FAIRE CA
         if(UserManager::AddUser($email, $pwd, $firstName, $secondName, $adress))
         {
-            echo "<script>alert('Votre inscription c\'est bien déroulé')</script>";
+            echo "<script>alert('Votre inscription s\'est bien déroulé')</script>";
         }
         else{
             echo "<script>alert('Cet email existe déjà')</script>";
