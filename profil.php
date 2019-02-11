@@ -1,4 +1,7 @@
-<?php require_once './';?>
+<?php
+require_once __DIR__ . '../server/manager/userManager.php';
+$user = UserManager::getUserInfos(7);
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -29,12 +32,13 @@
                 </div>
 
                 <div class="card-body">
-                    <h2 class="name">Exemple Concret</h2>
+                    <?php foreach ($user as $userInfos) {?>
+                    <h2 class="name"><?php echo $userInfos->firstName . " " . $userInfos->lastName ?></h2>
+                    
                     <h4 class="job-title">Éboueur</h4>
-                    <?php
-                    $u = ge
-                    ?>
+
                     <div class="bio">Despacito ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, miam.</div>
+                    <?php } ?>
                 </div>
             </div>
 
