@@ -26,6 +26,7 @@ $user = UserManager::getUserInfos(7);
         <?php include 'server/inc/userList.inc.php'; ?>
         
         
+
         <?= "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
     </body>
     <script type="text/javascript">

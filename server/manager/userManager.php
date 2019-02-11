@@ -15,24 +15,21 @@ class UserManager {
         $sqlInsertUser = "INSERT INTO `where_is_my_friend`.`users` (`email`, `password`,`salt`, `lastName`, `firstName`, `adress`) "
                 . "VALUES (:email, :password,:salt, :lastName, :firstName, :adress);";
         $salt = uniqid(mt_rand(), true);
-        $encryptPwd = sha1($password+$salt);
+        $encryptPwd = sha1($password + $salt);
         try {
             $stmt = Database::prepare($sqlInsertUser);
             if (UserManager::UserExist($email)) {
                 return false;
-            }
-            else{
-                $stmt->execute(array(
-                "email" => $email,
-                "password" => $encryptPwd,
-                "salt" => $salt,
-                "lastName" => $lastName,
-                "firstName" => $firstName,
-                "adress" => $adress
-            ));
+            } else {
+                $stmt->bindParam("email",$email, PDO::PARAM_STR);
+                $stmt->bindParam("password",$encryptPwd, PDO::PARAM_STR);
+                $stmt->bindParam("salt",$salt, PDO::PARAM_INT);
+                $stmt->bindParam("lastName",$lastName, PDO::PARAM_STR);
+                $stmt->bindParam("firstName",$firstName, PDO::PARAM_STR);
+                $stmt->bindParam("adress",$adress, PDO::PARAM_STR);
+                $stmt->execute();
                 return true;
             }
-            
         } catch (PDOException $e) {
             return false;
         }
@@ -54,8 +51,70 @@ class UserManager {
         $sqlGetUser = "SELECT * FROM `users` where email=:email";
         try {
             $stmt = Database::prepare($sqlGetUser);
+            $stmt->bindParam("email",$email, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'User');
+            if (count($result) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public static function DeleteUser($idUser) {
+        $sqlGetAllUser = "DELETE FROM `where_is_my_friend`.`users` WHERE `users`.`idUser` = :idUser";
+        try {
+            $stmt = Database::prepare($sqlGetAllUser);
+            $stmt->bindParam("idUser",$idUser, PDO::PARAM_INT);
+            $stmt->execute();
+            return TRUE;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public static function EditUser($idUser, $email, $password, $lastName, $firstName, $adress) {
+        $sqlGetAllUser = "UPDATE `where_is_my_friend`.`users` "
+                . "SET `email` = :email, `password` = :password, `lastName` = :lastName, `firstName` = :firstName, `adress` = 'Rue des palettes 25, 1242 Thonexe' WHERE `users`.`idUser` = 1;";
+        try {
+            $stmt = Database::prepare($sqlGetAllUser);
+            $stmt->bindParam("idUser",$idUser, PDO::PARAM_INT);
+            $stmt->execute();
+            return TRUE;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public static function GetUserInfos($idUser) {
+        try {
+            $stmt = Database::prepare('SELECT * FROM where_is_my_friend.users u WHERE u.idUser = :id');
+            $stmt->bindParam(":id", $idUser, PDO::PARAM_INT, 50);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'User');
+            return $result;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    public static function Connection($email,$pwd){
+        
+        if(UserManager::UserExist($email)){
+            
+        }
+        else{
+            echo "<script>alert('Cet email n'existe pas)</script>";
+        }
+        
+        $sqlGetUser = "SELECT * FROM `users` where email=:email";
+        try {
+            $stmt = Database::prepare($sqlGetUser);
             $stmt->execute(array(
-                "email" => $email
+                "email" => $email,
+                "pwd" => $password
             ));
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (count($result) > 0) {
@@ -66,35 +125,6 @@ class UserManager {
         } catch (PDOException $e) {
             return false;
         }
-    }
-    
-    public static function DeleteUser($idUser){
-        $sqlGetAllUser = "DELETE FROM `where_is_my_friend`.`users` WHERE `users`.`idUser` = :idUser";
-        try {
-            $stmt = Database::prepare($sqlGetAllUser);
-            $stmt->execute(array(
-                "idUser" => $idUser
-            ));
-            return TRUE;
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
-    
-    public static function EditUser ($idUser,$email,$password,$lastName,$firstName,$adress)
-    {
-        $sqlGetAllUser = "UPDATE `where_is_my_friend`.`users` "
-                       . "SET `email` = :email, `password` = :password, `lastName` = :lastName, `firstName` = :firstName, `adress` = 'Rue des palettes 25, 1242 Thonexe' WHERE `users`.`idUser` = 1;";
-        try {
-            $stmt = Database::prepare($sqlGetAllUser);
-            $stmt->execute(array(
-                "idUser" => $idUser
-            ));
-            return TRUE;
-        } catch (PDOException $e) {
-            return false;
-        }
-        
     }
 
 }
