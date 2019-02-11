@@ -1,4 +1,7 @@
-<?php ?>
+<?php
+require_once __DIR__ . '../server/manager/userManager.php';
+$user = UserManager::getUserInfos(7);
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -37,7 +40,6 @@
             $(".button").on("click tap", function () {
                 toggleSidebar();
             });
-
             $(document).keyup(function (e) {
                 if (e.keyCode === 27) {
                     toggleSidebar();
