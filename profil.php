@@ -1,4 +1,4 @@
-<?php ?>
+<?php require_once './';?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -31,6 +31,9 @@
                 <div class="card-body">
                     <h2 class="name">Exemple Concret</h2>
                     <h4 class="job-title">Éboueur</h4>
+                    <?php
+                    $u = ge
+                    ?>
                     <div class="bio">Despacito ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, miam.</div>
                 </div>
             </div>
