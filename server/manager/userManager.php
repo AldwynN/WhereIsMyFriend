@@ -103,5 +103,31 @@ class UserManager {
             return false;
         }
     }
+    public static function Connection($email,$pwd){
+        
+        if(UserManager::UserExist($email)){
+            
+        }
+        else{
+            
+        }
+        
+        $sqlGetUser = "SELECT * FROM `users` where email=:email";
+        try {
+            $stmt = Database::prepare($sqlGetUser);
+            $stmt->execute(array(
+                "email" => $email,
+                "pwd" => $password
+            ));
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (count($result) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 
 }
