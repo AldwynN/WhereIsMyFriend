@@ -21,14 +21,13 @@ class UserManager {
             if (UserManager::UserExist($email)) {
                 return false;
             } else {
-                $stmt->execute(array(
-                    "email" => $email,
-                    "password" => $encryptPwd,
-                    "salt" => $salt,
-                    "lastName" => $lastName,
-                    "firstName" => $firstName,
-                    "adress" => $adress
-                ));
+                $stmt->bindParam("email",$email, PDO::PARAM_STR);
+                $stmt->bindParam("password",$encryptPwd, PDO::PARAM_STR);
+                $stmt->bindParam("salt",$salt, PDO::PARAM_INT);
+                $stmt->bindParam("lastName",$lastName, PDO::PARAM_STR);
+                $stmt->bindParam("firstName",$firstName, PDO::PARAM_STR);
+                $stmt->bindParam("adress",$adress, PDO::PARAM_STR);
+                $stmt->execute();
                 return true;
             }
         } catch (PDOException $e) {
@@ -52,10 +51,9 @@ class UserManager {
         $sqlGetUser = "SELECT * FROM `users` where email=:email";
         try {
             $stmt = Database::prepare($sqlGetUser);
-            $stmt->execute(array(
-                "email" => $email
-            ));
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->bindParam("email",$email, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'User');
             if (count($result) > 0) {
                 return true;
             } else {
@@ -70,9 +68,8 @@ class UserManager {
         $sqlGetAllUser = "DELETE FROM `where_is_my_friend`.`users` WHERE `users`.`idUser` = :idUser";
         try {
             $stmt = Database::prepare($sqlGetAllUser);
-            $stmt->execute(array(
-                "idUser" => $idUser
-            ));
+            $stmt->bindParam("idUser",$idUser, PDO::PARAM_INT);
+            $stmt->execute();
             return TRUE;
         } catch (PDOException $e) {
             return false;
@@ -84,9 +81,8 @@ class UserManager {
                 . "SET `email` = :email, `password` = :password, `lastName` = :lastName, `firstName` = :firstName, `adress` = 'Rue des palettes 25, 1242 Thonexe' WHERE `users`.`idUser` = 1;";
         try {
             $stmt = Database::prepare($sqlGetAllUser);
-            $stmt->execute(array(
-                "idUser" => $idUser
-            ));
+            $stmt->bindParam("idUser",$idUser, PDO::PARAM_INT);
+            $stmt->execute();
             return TRUE;
         } catch (PDOException $e) {
             return false;
@@ -109,7 +105,7 @@ class UserManager {
             
         }
         else{
-            
+            echo "<script>alert('Cet email n'existe pas)</script>";
         }
         
         $sqlGetUser = "SELECT * FROM `users` where email=:email";
