@@ -12,7 +12,7 @@ echo '
   <span></span>
 </div>
 <div class="wrapper">
-    <nav>
+    <nav class="mainNav">
     <ul>
       <li><a class="link" href="./profil.php">Profil</a></li>
       <li><a class="link" href="./map.php">Map</a></li>

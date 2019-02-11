@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '../server/manager/userManager.php';
-$user = UserManager::getUserInfos(7);
+if (isset($_GET['id'])) {
+        $user = UserManager::getUserInfos($_GET['id']);
+    } else {
+        $user = UserManager::getUserInfos(7);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,38 +15,41 @@ $user = UserManager::getUserInfos(7);
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link href="css/cssNavBar.css" rel="stylesheet" type="text/css"/>
         <link href="css/cssProfil.css" rel="stylesheet" type="text/css"/>
+        <link href="css/cssUserList.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <?php
-        include 'server/inc/nav.inc.php';
-        ?>        
-        <div id="content">
-            <div class="card">
-                <div class="card-header"
-                     style="background-image: url(https://static-assets-prod.epicgames.com/fortnite/static/webpack/8704d4d5ffd1c315ac8e2c805a585764.jpg)"
-                     >
-                    <div class="card-header-bar">
-                        <a href="#" class="btn-message"><span class="sr-only">Message</span></a>
-                    </div>
+        <?php include 'server/inc/nav.inc.php'; ?>        
+        <main>
+            <?php 
+            include 'server/inc/userListButton.inc.php';
+            
+            include 'server/inc/cardProfil.inc.php';
+            ?>
+        </main>
+        
+        <?php include 'server/inc/userList.inc.php'; ?>
+        
+        
 
-                    <div class="card-header-slanted-edge">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200"><path class="polygon" d="M-20,200,1000,0V200Z" /></svg>
-
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <?php foreach ($user as $userInfos) {?>
-                    <h2 class="name"><?php echo $userInfos->firstName . " " . $userInfos->lastName ?></h2>
-                    
-                    <h4 class="job-title">Éboueur</h4>
-
-                    <div class="bio">Despacito ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, miam.</div>
-                    <?php } ?>
-                </div>
-            </div>
-
-        </div>
         <?= "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
     </body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            function toggleSidebar() {
+                $(".button").toggleClass("active");
+                $("main").toggleClass("move-to-left");
+                $(".sidebar-item").toggleClass("active");
+            }
+
+            $(".button").on("click tap", function () {
+                toggleSidebar();
+            });
+            $(document).keyup(function (e) {
+                if (e.keyCode === 27) {
+                    toggleSidebar();
+                }
+            });
+        });
+    </script>
 </html>
