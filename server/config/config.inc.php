@@ -9,8 +9,8 @@ define ('EDB_PORT', "3306");
 // Nom de la base de donnée
 define ('EDB_DBNAME', "where_is_my_friend");
 // Nom du compte admin de la base de donnée
-define ('EDB_USER', "root");
+define ('EDB_USER', "BorelJ");
 // Mot de passe du compte admin
-define ('EDB_PASS', "");
+define ('EDB_PASS', "Super");
 
 ?>
