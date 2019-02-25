@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '../server/manager/userManager.php';
 if (isset($_GET['id'])) {
-        $user = UserManager::getUserInfos($_GET['id']);
+        $user = UserManager::GetUserInfosById($_GET['id']);
     } else {
-        $user = UserManager::getUserInfos(7);
+        $user = UserManager::GetUserInfosById(7);
     }
 ?>
 <!DOCTYPE html>
@@ -33,23 +33,5 @@ if (isset($_GET['id'])) {
 
         <?= "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
     </body>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            function toggleSidebar() {
-                $(".button").toggleClass("active");
-                $("main").toggleClass("move-to-left");
-                $(".sidebar-item").toggleClass("active");
-            }
-
-            $(".button").on("click tap", function () {
-                toggleSidebar();
-            });
-            $(document).keyup(function (e) {
-                if (e.keyCode === 27) {
-                    toggleSidebar();
-                }
-            });
-        });
-    </script>
+    
 </html>

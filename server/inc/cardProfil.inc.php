@@ -27,4 +27,4 @@
                     <div class="bio"><?php echo $userInfos->adress ?></div>
                     <?php } ?>
                 </div>
-            </div>'
+            </div>
