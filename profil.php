@@ -1,9 +1,10 @@
 <?php
-require_once __DIR__ . '../server/manager/userManager.php';
+include_once  './server/inc/inc.all.php';
+
 if (isset($_GET['id'])) {
         $user = UserManager::GetUserInfosById($_GET['id']);
     } else {
-        $user = UserManager::GetUserInfosById(7);
+        $user = UserManager::GetUserInfosById(9);
     }
 ?>
 <!DOCTYPE html>
@@ -18,16 +19,16 @@ if (isset($_GET['id'])) {
         <link href="css/cssUserList.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <?php include 'server/inc/nav.inc.php'; ?>        
+        <?php include './server/inc/nav.inc.php'; ?>        
         <main>
             <?php 
-            include 'server/inc/userListButton.inc.php';
+            include './server/inc/userListButton.inc.php';
             
-            include 'server/inc/cardProfil.inc.php';
+            include './server/inc/cardProfil.inc.php';
             ?>
         </main>
         
-        <?php include 'server/inc/userList.inc.php'; ?>
+        <?php include './server/inc/userList.inc.php'; ?>
         
         
 

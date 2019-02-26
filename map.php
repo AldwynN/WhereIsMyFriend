@@ -1,4 +1,6 @@
-<?php ?>
+<?php 
+include_once './server/inc/inc.all.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -10,12 +12,12 @@
         <link href="css/cssUserList.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <?php include 'server/inc/nav.inc.php'; ?>
+        <?php include_once 'server/inc/nav.inc.php'; ?>
         <main>
-        <?php include 'server/inc/userListButton.inc.php';?>
+        <?php include_once 'server/inc/userListButton.inc.php';?>
         </main>
         <?= 
-        include 'server/inc/userList.inc.php';
+        include_once 'server/inc/userList.inc.php';
         "</div>" /*Permet de fermer le div ouvert dans la nav*/
         ?>
     </body>
