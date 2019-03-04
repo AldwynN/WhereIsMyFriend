@@ -1,13 +1,12 @@
 <?php
-
+include_once './server/inc/inc.all.php';
 /* Titre : Manager de la classe "User"
  * Date : Mardi, 22.01.2019
  * Auteurs : Romain Peretti - Khalil Meddeb
  * Version : 1.0
  * Description : Manager comportant les différents fonctions en rapport avec la classe "User"
  */
-require_once __DIR__ . '/../class/User.php';
-require_once __DIR__ . '/../database/database.php';
+
 
 class UserManager {
 
