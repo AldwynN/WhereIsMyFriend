@@ -1,10 +1,10 @@
 <?php
 require_once __DIR__ . '../server/manager/userManager.php';
 if (isset($_GET['id'])) {
-        $user = UserManager::getUserInfos($_GET['id']);
-    } else {
-        $user = UserManager::getUserInfos(7);
-    }
+    $user = UserManager::getUserInfos($_GET['id']);
+} else {
+    $user = null;
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,17 +20,13 @@ if (isset($_GET['id'])) {
     <body>
         <?php include 'server/inc/nav.inc.php'; ?>        
         <main>
-            <?php 
+            <?php
             include 'server/inc/userListButton.inc.php';
-            
-            include 'server/inc/cardProfil.inc.php';
+
+            include_once 'server/inc/cardProfil.inc.php';
             ?>
         </main>
-        
         <?php include 'server/inc/userList.inc.php'; ?>
-        
-        
-
         <?= "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
     </body>
     <script type="text/javascript">
