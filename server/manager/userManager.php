@@ -1,5 +1,4 @@
 <?php
-include_once './server/inc/inc.all.php';
 /* Titre : Manager de la classe "User"
  * Date : Mardi, 22.01.2019
  * Auteurs : Romain Peretti - Khalil Meddeb
@@ -128,5 +127,6 @@ class UserManager {
             echo "<script>alert('Cet email n'existe pas')</script>";
         }
     }
+    
 
 }
