@@ -1,5 +1,5 @@
 <?php
-require_once './server/manager/userManager.php';
+include_once './server/inc/inc.all.php';
 if (isset($_POST["connection"])) {
     if (isset($_POST["email"])&&isset($_POST["pwd"])&&isset($_POST["firstName"])&&isset($_POST["secondName"])&&isset($_POST["adress"])) {
         $email = filter_var($_POST["email"], FILTER_SANITIZE_STRING);
