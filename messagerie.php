@@ -12,10 +12,7 @@
     </head>
     <body>
 
-        <?php
-        include 'server/inc/nav.inc.php';
-        ?>
-
+        <?php include 'server/inc/nav.inc.php'; ?>
         <main>
             
             <?php include 'server/inc/userListButton.inc.php'; ?>

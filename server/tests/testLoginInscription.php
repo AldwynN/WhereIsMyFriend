@@ -19,16 +19,9 @@ if (isset($_POST["connection"])) {
 }
 if (isset($_POST["connectionLog"])) {
     if (isset($_POST["emailLog"])&&isset($_POST["pwdLog"])) {
-        $email = filter_var($_POST["email"], FILTER_SANITIZE_STRING);
-        $pwd = filter_var($_POST["pwd"], FILTER_SANITIZE_STRING);
-        //JETAIS ENTRAIN DE FAIRE CA
-        if(UserManager::AddUser($email, $pwd, $firstName, $secondName, $adress))
-        {
-            echo "<script>alert('Votre inscription c\'est bien déroulé')</script>";
-        }
-        else{
-            echo "<script>alert('Cet email existe déjà')</script>";
-        }
+        $email = filter_var($_POST["emailLog"], FILTER_SANITIZE_STRING);
+        $pwd = filter_var($_POST["pwdLog"], FILTER_SANITIZE_STRING);
+        UserManager::Connection($email, $pwd);
     }
 }
 ?>

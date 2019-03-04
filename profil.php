@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '../server/manager/userManager.php';
+include_once  './server/inc/inc.all.php';
+
 if (isset($_GET['id'])) {
     $user = UserManager::getUserInfos($_GET['id']);
 } else {
@@ -18,34 +19,20 @@ if (isset($_GET['id'])) {
         <link href="css/cssUserList.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <?php include 'server/inc/nav.inc.php'; ?>        
+        <?php include './server/inc/nav.inc.php'; ?>        
         <main>
-            <?php
-            include 'server/inc/userListButton.inc.php';
-
-            include_once 'server/inc/cardProfil.inc.php';
+            <?php 
+            include './server/inc/userListButton.inc.php';
+            
+            include './server/inc/cardProfil.inc.php';
             ?>
         </main>
-        <?php include 'server/inc/userList.inc.php'; ?>
+        
+        <?php include './server/inc/userList.inc.php'; ?>
+        
+        
+
         <?= "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
     </body>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            function toggleSidebar() {
-                $(".button").toggleClass("active");
-                $("main").toggleClass("move-to-left");
-                $(".sidebar-item").toggleClass("active");
-            }
-
-            $(".button").on("click tap", function () {
-                toggleSidebar();
-            });
-            $(document).keyup(function (e) {
-                if (e.keyCode === 27) {
-                    toggleSidebar();
-                }
-            });
-        });
-    </script>
+    
 </html>
