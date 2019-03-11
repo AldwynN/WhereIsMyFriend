@@ -2,9 +2,9 @@
 include_once  './server/inc/inc.all.php';
 
 if (isset($_GET['id'])) {
-    $user = UserManager::getUserInfos($_GET['id']);
+    $user = UserManager::GetUserInfosById($_GET['id']);
 } else {
-    $user = null;
+    $user = UserManager::GetUserInfosById(7);
 }
 ?>
 <!DOCTYPE html>

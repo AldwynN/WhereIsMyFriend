@@ -1,5 +1,5 @@
 <?php
-
+$idUser=7;
 session_start();
 
 require_once '/../database/database.php';

@@ -7,12 +7,12 @@
          */
 
         
-
+       
         $res = FriendManager::getAllFriendsInfosForUser($idUser);
         //print_r($res);
         foreach ($res as $user) :
             ?>
-            <li class="sidebar-item"><a href="#" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li>
+            <li class="sidebar-item"><a href="<?php echo 'profil.php?id=' . $user->idFriend ?>" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li>
             <?php endforeach; ?>
     </ul>
 </div>
