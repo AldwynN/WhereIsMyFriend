@@ -1,5 +1,4 @@
 <?php
-include_once './server/inc/inc.all.php';
 /* Titre : Manager de la classe "User"
  * Date : Mardi, 22.01.2019
  * Auteurs : Romain Peretti - Khalil Meddeb
@@ -87,10 +86,14 @@ class UserManager {
             return false;
         }
     }
-
+    /**
+     * Fonction récupérant les données d'un utilisateur par son ID
+     * @param id $idUser
+     * @return Classe User sinon FALSE
+     */
     public static function GetUserInfosById($idUser) {
         try {
-            $stmt = Database::prepare('SELECT * FROM where_is_my_friend.users u WHERE u.idUser = :id');
+            $stmt = Database::prepare('SELECT idUser, email, lastName, firstName, adress FROM where_is_my_friend.users u WHERE u.idUser = :id');
             $stmt->bindParam(":id", $idUser, PDO::PARAM_INT, 50);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'User');
@@ -128,5 +131,6 @@ class UserManager {
             echo "<script>alert('Cet email n'existe pas')</script>";
         }
     }
+    
 
 }

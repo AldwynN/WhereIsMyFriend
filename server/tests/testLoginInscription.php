@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <?php
 require_once '../manager/userManager.php';
-if (isset($_POST["connection"])) {
-    if (isset($_POST["email"])&&isset($_POST["pwd"])&&isset($_POST["firstName"])&&isset($_POST["secondName"])&&isset($_POST["adress"])) {
+if (isset($_POST["inscription"])) {
+    if (isset($_POST["email"])&&isset($_POST["pwd"])&&isset($_POST["pwd2"])&&isset($_POST["firstName"])&&isset($_POST["secondName"])&&isset($_POST["adress"])) {
+        if ($_POST["pwd"]==$_POST["pwd2"]) {
+            
+        
         $email = filter_var($_POST["email"], FILTER_SANITIZE_STRING);
         $pwd = filter_var($_POST["pwd"], FILTER_SANITIZE_STRING);
         $firstName = filter_var($_POST["firstName"], FILTER_SANITIZE_STRING);
         $secondName = filter_var($_POST["secondName"], FILTER_SANITIZE_STRING);
         $adress = filter_var($_POST["adress"], FILTER_SANITIZE_STRING);
         if(UserManager::AddUser($email, $pwd, $firstName, $secondName, $adress))
-        {
+            {
             echo "<script>alert('Votre inscription c\'est bien déroulé')</script>";
-        }
+            }
         else{
             echo "<script>alert('Cet email existe déjà')</script>";
+            }
+        }
+        else{
+            echo "<script>alert('Les deux mot de passe ne correspondent pas ')</script>";
         }
     }
 }
@@ -56,6 +63,10 @@ if (isset($_POST["connectionLog"])) {
                         <td><input type="password" name="pwd" required></td>
                     </tr>
                     <tr>
+                        <td>Repeter le mot de passe :</td>
+                        <td><input type="password" name="pwd2" required></td>
+                    </tr>
+                    <tr>
                         <td>Nom :</td>
                         <td><input type="text" name="firstName" value="<?php if (isset($_POST['firstName'])) echo $_POST['firstName']; ?>" required></td>
                     </tr>
@@ -69,7 +80,7 @@ if (isset($_POST["connectionLog"])) {
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="submit" name="connection"></td>
+                        <td><input type="submit" name="inscription"></td>
                     </tr>
                     
                 </table>
