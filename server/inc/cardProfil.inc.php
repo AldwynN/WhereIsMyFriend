@@ -14,7 +14,6 @@
         </div>
         <div class="card-header-slanted-edge">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200"><path class="polygon" d="M-20,200,1000,0V200Z" /></svg>
-            
         </div>
     </div>
 

@@ -1,4 +1,6 @@
-<?php ?>
+<?php 
+include_once './server/inc/inc.all.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -14,9 +16,9 @@
 
         <?php include 'server/inc/nav.inc.php'; ?>
         <main>
-            
+
             <?php include 'server/inc/userListButton.inc.php'; ?>
-            
+
             <div class="chat">
                 <div class="chat-title">
                     <h1>Romain Peretti</h1>
@@ -34,34 +36,10 @@
 
             </div>
         </main>
-        
-        <?php include 'server/inc/userList.inc.php'; ?>
-        
-        
-        
-        <?= "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
-        
-        <script type="text/javascript">
-        $(document).ready(function () {
 
-            function toggleSidebar() {
-                $(".button").toggleClass("active");
-                $("main").toggleClass("move-to-left");
-                $(".sidebar-item").toggleClass("active");
-            }
+        <?php include 'server/inc/userList.inc.php'; 
+        "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
 
-            $(".button").on("click tap", function () {
-                toggleSidebar();
-            });
-
-            $(document).keyup(function (e) {
-                if (e.keyCode === 27) {
-                    toggleSidebar();
-                }
-            });
-        });
-    </script>
-    
         <script type="text/javascript">
             var $messages = $('.messages-content'),
                     d, h, m,
