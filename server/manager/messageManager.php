@@ -17,7 +17,7 @@ class MessageManager {
      */
     public static function GetConversation($idUserSent, $idUserReceived) {
         $idConversation = 1;
-        $sql = "SELECT m.message, m.dateSent, u.idUser FROM conversations c, messages m, users u 
+        $sql = "SELECT u.idUser, m.message, m.dateSent, u.idUser FROM conversations c, messages m, users u 
 where c.idConversation = :idConversation and idUser = idUserSent
 group by m.dateSent order by m.dateSent desc";
 
