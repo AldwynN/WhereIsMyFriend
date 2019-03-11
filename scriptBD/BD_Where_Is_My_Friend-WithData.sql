@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `where_is_my_friend` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `where_is_my_friend`;
 -- MySQL dump 10.13  Distrib 5.6.15, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: where_is_my_friend
@@ -16,6 +14,32 @@ USE `where_is_my_friend`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `conversations`
+--
+
+DROP TABLE IF EXISTS `conversations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `conversations` (
+  `idConversation` int(11) NOT NULL,
+  `idMessage` int(11) NOT NULL,
+  PRIMARY KEY (`idConversation`,`idMessage`),
+  KEY `fk_IdMessage_idx` (`idMessage`),
+  CONSTRAINT `fk_IdMessage` FOREIGN KEY (`idMessage`) REFERENCES `messages` (`idMessage`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `conversations`
+--
+
+LOCK TABLES `conversations` WRITE;
+/*!40000 ALTER TABLE `conversations` DISABLE KEYS */;
+INSERT INTO `conversations` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,14),(1,15),(1,16);
+/*!40000 ALTER TABLE `conversations` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `friends`
@@ -63,7 +87,7 @@ CREATE TABLE `messages` (
   KEY `idUserReceived` (`idUserReceived`),
   CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`idUserSent`) REFERENCES `users` (`idUser`),
   CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`idUserReceived`) REFERENCES `users` (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +96,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+INSERT INTO `messages` VALUES (1,8,7,'aaaaaaaa','2017-07-23 13:10:11'),(2,7,8,'bbbbbbb','2017-02-23 12:10:11'),(3,8,7,'cccccccc','2017-07-21 06:10:11'),(4,8,7,'ccc222cc','2018-07-21 06:10:11'),(5,7,8,'dddddddd','2018-08-21 10:10:11'),(6,7,8,'ffffffff','2018-09-29 05:11:53'),(7,7,8,'fsfffffff','2018-09-29 05:11:53'),(12,7,8,'aasdddda','2019-03-11 15:32:09'),(13,7,8,'je suis ok','2019-03-11 15:35:28'),(14,7,8,'je suis ok','2019-03-11 15:38:01'),(15,7,8,'dorÃ©','2019-03-11 15:38:37'),(16,7,8,'normalement c&#39;est bon','2019-03-11 15:42:40');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-11 14:02:06
+-- Dump completed on 2019-03-11 15:57:30
