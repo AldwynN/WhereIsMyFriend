@@ -2,7 +2,7 @@
 include_once  './server/inc/inc.all.php';
 
 if (isset($_GET['id'])) {
-    $user = UserManager::getUserInfos($_GET['id']);
+    $user = UserManager::GetUserInfosById($_GET['id']);
 } else {
     $user = null;
 }
@@ -28,11 +28,8 @@ if (isset($_GET['id'])) {
             ?>
         </main>
         
-        <?php include './server/inc/userList.inc.php'; ?>
-        
-        
-
-        <?= "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
+        <?php include './server/inc/userList.inc.php'; 
+        "</div>" /* Permet de fermer le div ouvert dans la nav */ ?>
     </body>
     
 </html>

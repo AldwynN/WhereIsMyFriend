@@ -6,14 +6,19 @@
          * Auteur :Antonija Šimić (Trouvé à l'adresse : https://codepen.io/tonkec/pen/gryZmg)
          */
 
-        
+
 
         $res = FriendManager::getAllFriendsInfosForUser($idUser);
-        //print_r($res);
-        foreach ($res as $user) :
+        if (!empty($res)) {
+            foreach ($res as $user) :
+                ?><li class="sidebar-item"><a href="#" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li><?php
+            endforeach;
+        }else {
             ?>
-            <li class="sidebar-item"><a href="#" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li>
-            <?php endforeach; ?>
+            <li class="sidebar-item">Pas d'amis</li>
+                <?php
+            }
+            ?>
     </ul>
 </div>
 
@@ -33,9 +38,6 @@
             if (e.keyCode === 27) {
                 toggleSidebar();
             }
-        });
-        $(".sidebar-item").on("click tap", function () {
-           toggleSidebar(); 
         });
     });
 </script>

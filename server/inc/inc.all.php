@@ -1,4 +1,5 @@
 <?php
+$idUser = 7;
 
 session_start();
 

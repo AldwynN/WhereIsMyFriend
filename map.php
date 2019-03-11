@@ -1,5 +1,4 @@
 <?php
-$idUser = 7;
 include_once './server/inc/inc.all.php';
 ?>
 <!DOCTYPE html>
@@ -15,9 +14,10 @@ include_once './server/inc/inc.all.php';
         <script src="server/Leaflet/leaflet.js" type="text/javascript"></script>
         <style>
             #map {
-                width: 93%;
+                width: 90%;
                 height: 800px;
                 border: 1px solid #AAA;
+                margin: 5px;
             }
         </style>
     </head>
