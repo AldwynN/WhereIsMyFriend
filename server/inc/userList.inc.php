@@ -19,6 +19,8 @@
                 <?php
             }
             ?>
+            <li class="sidebar-item"><a href="<?php echo 'profil.php?id=' . $user->idFriend ?>" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li>
+            <?php endforeach; ?>
     </ul>
 </div>
 

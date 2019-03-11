@@ -34,8 +34,8 @@ class Database {
         if (!self::$pdoInstance) {
             try {
 
-                $dsn = EDB_DBTYPE . ':host=' . EDB_HOST . ';port=' . EDB_PORT . ';dbname=' . EDB_DBNAME;
-                self::$pdoInstance = new PDO($dsn, EDB_USER, EDB_PASS, array('charset' => 'utf8'));
+               $dsn = EDB_DBTYPE . ':host=' . EDB_HOST . ';port=' . EDB_PORT . ';dbname=' . EDB_DBNAME .";charset=utf8";
+                self::$pdoInstance = new PDO($dsn, EDB_USER, EDB_PASS);
                 self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
                 echo "EDatabase Error: " . $e->getMessage();
