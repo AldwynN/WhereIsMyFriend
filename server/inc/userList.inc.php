@@ -5,11 +5,11 @@
          * HTML de la liste déroulante contenant les différents amis
          * Auteur :Antonija Šimić (Trouvé à l'adresse : https://codepen.io/tonkec/pen/gryZmg)
          */
-
+        $idUser = 7;
         
 
-        $res = getAllFriends($_SESSION['id']);
-        print_r($res);
+        $res = FriendManager::getAllFriendsInfosForUser($idUser);
+        
         foreach ($res as $user) :
             ?>
             <li class="sidebar-item"><a href="#" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li>
