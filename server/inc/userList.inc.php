@@ -11,7 +11,7 @@
         $res = FriendManager::getAllFriendsInfosForUser($idUser);
         if (!empty($res)) {
             foreach ($res as $user) :
-                ?><li class="sidebar-item"><a href="#" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li><?php
+                ?><li class="sidebar-item"><a href="<?php echo 'profil.php?id=' . $user->idFriend ?>" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li><?php
             endforeach;
         }else {
             ?>
@@ -19,8 +19,6 @@
                 <?php
             }
             ?>
-            <li class="sidebar-item"><a href="<?php echo 'profil.php?id=' . $user->idFriend ?>" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li>
-            <?php endforeach; ?>
     </ul>
 </div>
 
