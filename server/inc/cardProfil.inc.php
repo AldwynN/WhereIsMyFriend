@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header"
-         style="background-image: url(https://static-assets-prod.epicgames.com/fortnite/static/webpack/8704d4d5ffd1c315ac8e2c805a585764.jpg)"
+         style="background-image: url(https://wallpaperplay.com/walls/full/e/5/3/13586.jpg)"
          >
         <div class="card-header-bar">
             <a href="#" class="btn-message"><span class="sr-only">Message</span></a>
