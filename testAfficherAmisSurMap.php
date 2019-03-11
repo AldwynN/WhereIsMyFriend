@@ -91,7 +91,7 @@ $idUser = 7;
                         var longitude = parseFloat(response["lon"]);
                         var latitude = parseFloat(response["lat"]);
                         L.marker([latitude, longitude])
-                                .bindPopup('<a href="#">' + user.firstName + '</a>')
+                                .bindPopup('<a href="profil.php?id='+user.idFriend+'">' + user.firstName + '</a>')
                                 .addTo(map);
                         if (msg.length > 0)
                             $("#infoMsg").html(msg);
