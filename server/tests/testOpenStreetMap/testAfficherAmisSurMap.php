@@ -1,3 +1,6 @@
+<?php
+$idUser = 7;
+?>
 <!DOCTYPE html>
 
 <html>
@@ -5,8 +8,8 @@
         <meta charset="UTF-8">
         <title>Test OSM</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link href="Leaflet/leaflet.css" rel="stylesheet" type="text/css"/>
-        <script src="Leaflet/leaflet.js" type="text/javascript"></script>
+        <link href="" rel="stylesheet" type="text/css"/>
+        <script src="server/Leaflet/leaflet.js" type="text/javascript"></script>
         <style>
             #map {
                 width: 100%;
@@ -15,51 +18,21 @@
             }
         </style>
     </head>
-    <body onload="loadMap();">
+    <body onload="loadMap()">
         <h1 id="infoMsg"></h1>
-        <h3>Inscrivez une adresse</h3>  
+        <h3>Localisation des lieux de domiciles de vos amis</h3>  
         <div id="mapdiv"></div>
         <form action="#" method="POST">
-            <input type="text" name="txtRue" id="adress"/>
-            <input type="button" name="btnSend" onclick="searchAdress();"/>
+            <input type="button" name="btnSend" id="btnSearch"/>
         </form>
         <div id="map"></div>
     </body>
 
     <script type="text/javascript">
-//        var json = [{
-//
-//                "name": "Canada",
-//                "url": "https://en.wikipedia.org/wiki/Canada",
-//                "lat": 56.130366,
-//                "lng": -106.346771
-//            },
-//            {
-//                "name": "Anguilla",
-//                "url": "https://en.wikipedia.org/wiki/Anguilla",
-//                "lat": 18.220554,
-//                "lng": -63.068615
-//            },
-//            {
-//                "name": "Japan",
-//                "url": "https://en.wikipedia.org/wiki/Japan",
-//                "lat": 36.204824,
-//                "lng": 138.252924
-//            },
-//            {
-//                "name": "Chez le BOSS",
-//                "url": "https://en.wikipedia.org/wiki/oui",
-//                "lat": 46.212230,
-//                "lng": 6.231510
-//            },
-//            {
-//                "name": "Charmilles",
-//                "url": "https://en.wikipedia.org/wiki/Charmilles",
-//                "lat": 46.206210,
-//                "lng": 6.127920
-//            }
-//        ]
         var map;
+        $("#btnSearch").click(function () {
+            getFriendsInfosForUser();
+        });
         function loadMap() {
             map = L.map('map', {
                 center: [20.0, 5.0],
@@ -78,11 +51,35 @@
 //            }
         }
 
-        function searchAdress() {
-            var adress = document.getElementById("adress");
+        function getFriendsInfosForUser() {
+            $.ajax({
+                method: 'GET',
+                url: '../../ajax/ajaxGetFriendsAdress.php',
+                data: {id: <?= $idUser ?>},
+                dataType: 'json',
+                success: function (data) {
+                    var response = data[0];
+                    var msg = '';
+                    var longitude = parseFloat(response["lon"]);
+                    var latitude = parseFloat(response["lat"]);
+                    var city = response["city"];
+                    L.marker([latitude, longitude])
+                            .bindPopup('<a href="#">' + city + '</a>')
+                            .addTo(map);
+                    if (msg.length > 0)
+                        $("#infoMsg").html(msg);
+                }
+            });
+        }
+
+        function searchAdress(paramAdress = null) {
+            var adress = "";
+            if (paramAdress.length > 0 && paramAdress !== null) {
+                var adress = paramAdress;
+            }
             var url = "https://nominatim.openstreetmap.org/search/london?format=json&polygon=1&addressdetails=1"
-            if (adress.value.length > 0) {
-                url = "https://nominatim.openstreetmap.org/search/" + adress.value + "?format=json&polygon=1&addressdetails=1";
+            if (adress.length > 0) {
+                url = "https://nominatim.openstreetmap.org/search/" + adress + "?format=json&polygon=1&addressdetails=1";
             }
 
             $.ajax({
