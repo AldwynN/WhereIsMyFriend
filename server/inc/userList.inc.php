@@ -8,8 +8,8 @@
 
         
 
-        $res = getAllFriends($_SESSION['id']);
-        print_r($res);
+        $res = FriendManager::getAllFriendsInfosForUser($idUser);
+        //print_r($res);
         foreach ($res as $user) :
             ?>
             <li class="sidebar-item"><a href="#" class="sidebar-anchor"><?= $user->lastName . " " . $user->firstName ?></a></li>
@@ -33,6 +33,9 @@
             if (e.keyCode === 27) {
                 toggleSidebar();
             }
+        });
+        $(".sidebar-item").on("click tap", function () {
+           toggleSidebar(); 
         });
     });
 </script>
